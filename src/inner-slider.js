@@ -168,7 +168,7 @@ export class InnerSlider extends React.Component {
     });
   };
   componentDidUpdate = () => {
-    this.checkImagesLoad();
+//     this.checkImagesLoad();
     this.props.onReInit && this.props.onReInit();
     if (this.props.lazyLoad) {
       let slidesToLoad = getOnDemandLazySlides({
