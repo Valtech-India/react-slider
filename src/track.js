@@ -10,7 +10,7 @@ import {
 
 // given specifications/props for a slide, fetch all the classes that need to be applied to the slide
 var getSlideClasses = spec => {
-  var slickActive, slickCenter, slickCloned;
+  var slickActive, slickCenter, slickCloned, slickPrev, slickNext;
   var centerOffset, index;
 
   if (spec.rtl) {
@@ -28,6 +28,12 @@ var getSlideClasses = spec => {
     ) {
       slickActive = true;
     }
+    if (index === spec.currentSlide - 1) {
+    slickPrev = true
+  }
+  if (index === spec.currentSlide + 1) {
+    slickNext = true
+  }
   } else {
     slickActive =
       spec.currentSlide <= index &&
@@ -39,7 +45,9 @@ var getSlideClasses = spec => {
     "slick-active": slickActive,
     "slick-center": slickCenter,
     "slick-cloned": slickCloned,
-    "slick-current": slickCurrent // dubious in case of RTL
+    "slick-current": slickCurrent // dubious in case of RTL,
+    "slick-prevvv": slickPrev,
+    "slick-nexttt": slickNext
   };
 };
 
