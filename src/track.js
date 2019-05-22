@@ -45,7 +45,7 @@ var getSlideClasses = spec => {
     "slick-active": slickActive,
     "slick-center": slickCenter,
     "slick-cloned": slickCloned,
-    "slick-current": slickCurrent // dubious in case of RTL,
+    "slick-current": slickCurrent, // dubious in case of RTL
     "slick-prevvv": slickPrev,
     "slick-nexttt": slickNext
   };
