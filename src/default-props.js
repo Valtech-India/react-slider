@@ -17,7 +17,7 @@ var defaultProps = {
   dots: false,
   dotsClass: "slick-dots",
   draggable: true,
-  easing: "linear",
+  easing: "ease-out",
   edgeFriction: 0.35,
   fade: false,
   focusOnSelect: false,
