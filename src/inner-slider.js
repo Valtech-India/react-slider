@@ -70,7 +70,32 @@ export class InnerSlider extends React.Component {
       }
     }
   };
+  touchStart = e => {
+     this.firstClientX = e.touches[ 0 ].clientX;
+     this.firstClientY = e.touches[ 0 ].clientY;
+  }
+
+  preventTouch = function(e){
+    const minValue = 5; // threshold
+
+    this.clientX = e.touches[ 0 ].clientX - this.firstClientX;
+    this.clientY = e.touches[ 0 ].clientY - this.firstClientY;
+
+    if (Math.abs(this.clientX) > minValue) {
+       e.preventDefault();
+       e.returnValue = false;
+       return false;
+    }
+  }
   componentDidMount = () => {
+    const userAgent = window.navigator.userAgent;
+      if(userAgent.match(/iPhone/i)){
+        const index = userAgent.split(" ").indexOf("OS") + 1
+        if (parseInt(userAgent.split(" ")[ index ].split("_")[ 0 ], 10) > 10) {
+          window.addEventListener('touchstart', this.touchStart);
+          window.addEventListener('touchmove', this.preventTouch, {passive: false});
+        }
+      } 
     let spec = { listRef: this.list, trackRef: this.track, ...this.props };
     this.updateState(spec, true, () => {
       this.adaptHeight();
@@ -108,6 +133,14 @@ export class InnerSlider extends React.Component {
     }
   };
   componentWillUnmount = () => {
+    const userAgent = window.navigator.userAgent;
+      if(userAgent.match(/iPhone/i)){
+        const index = userAgent.split(" ").indexOf("OS") + 1
+        if (parseInt(userAgent.split(" ")[ index ].split("_")[ 0 ], 10) > 10) {
+      window.removeEventListener('touchstart', this.touchStart);
+      window.removeEventListener('touchmove', this.preventTouch, {passive: false});
+        }
+      }
     if (this.animationEndCallback) {
       clearTimeout(this.animationEndCallback);
     }
