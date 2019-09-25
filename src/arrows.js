@@ -9,6 +9,9 @@ export class PrevArrow extends React.PureComponent {
     if (e) {
       e.preventDefault();
     }
+    if (this.props.mixpanelHandler) {
+        this.props.mixpanelHandler();
+    }
     this.props.clickHandler(options, e);
   }
   render() {
@@ -59,6 +62,9 @@ export class NextArrow extends React.PureComponent {
   clickHandler(options, e) {
     if (e) {
       e.preventDefault();
+    }
+    if (this.props.mixpanelHandler) {
+        this.props.mixpanelHandler();
     }
     this.props.clickHandler(options, e);
   }
