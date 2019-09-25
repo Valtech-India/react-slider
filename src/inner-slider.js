@@ -696,7 +696,8 @@ export class InnerSlider extends React.Component {
       "nextArrow"
     ]);
     arrowProps.clickHandler = this.changeSlide;
-
+    arrowProps.clickHandler = this.props.mixpanelHandler;
+    
     if (this.props.arrows) {
       prevArrow = <PrevArrow {...arrowProps} />;
       nextArrow = <NextArrow {...arrowProps} />;
